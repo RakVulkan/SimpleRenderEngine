@@ -4,60 +4,68 @@
 namespace RenderEngine {
 
 	Logger::Logger() {
-		file = "logged_files/log.txt";
+		mFile = "logged_files/log.txt";
 	}
 
-	Logger& Logger::getInstance() {
-		static Logger logger;
-		return logger;
+	Logger& Logger::getInstance() 
+	{
+		static Logger sLogger;
+		return sLogger;
 	}
 
-	void Logger::setOutputFile(const std::string &filename) {
-		file = filename;
+	void Logger::setOutputFile(const std::string& inFilename) 
+	{
+		mFile = inFilename;
 
 		// Clear the file if it hasn't been written to yet
-		if (std::find(filePaths.begin(), filePaths.end(), filename) == filePaths.end()) {
-			filePaths.insert(filename);
+		if (std::find(mFilePaths.begin(), mFilePaths.end(), inFilename) == mFilePaths.end()) {
+			mFilePaths.insert(inFilename);
 			clearFileContents();
 		}
 	}
 
-	void Logger::debug(const std::string &filePath, std::string &module, const std::string &message) {
-		setOutputFile(filePath);
-		logMessage(DEBUG, module, message);
+	void Logger::debug(const std::string& inFilePath, std::string& inModule, const std::string& inMessage) 
+	{
+		setOutputFile(inFilePath);
+		logMessage(DEBUG, inModule, inMessage);
 	}
 
-	void Logger::info(const std::string &filePath, const std::string &module, const std::string &message) {
-		setOutputFile(filePath);
-		logMessage(INFO, module, message);
+	void Logger::info(const std::string& inFilePath, const std::string& inModule, const std::string& inMessage)
+	{
+		setOutputFile(inFilePath);
+		logMessage(INFO, inModule, inMessage);
 	}
 
-	void Logger::warning(const std::string &filePath, const std::string &module, const std::string &message) {
-		setOutputFile(filePath);
-		logMessage(WARNING, module, message);
+	void Logger::warning(const std::string& FilePath, const std::string& inModule, const std::string& inMessage) 
+	{
+		setOutputFile(FilePath);
+		logMessage(WARNING, inModule, inMessage);
 	}
 
-	void Logger::error(const std::string &filePath, const std::string &module, const std::string &message) {
-		setOutputFile(filePath);
-		logMessage(ERROR, module, message);
+	void Logger::error(const std::string& inFilePath, const std::string& inModule, const std::string& inMessage) 
+	{
+		setOutputFile(inFilePath);
+		logMessage(ERROR, inModule, inMessage);
 	}
 
-	void Logger::logMessage(const int &priority, const std::string &module, const std::string &message) {
-		std::cout << module.c_str() << " : " << message.c_str() << std::endl;
-		filestream.open(file, std::ofstream::app);
-		if (!filestream) {
-			std::cout << "Error: Logger Can't Log To: " << file.c_str() << std::endl;
+	void Logger::logMessage(const int& inPriority, const std::string& inModule, const std::string& inMessage) 
+	{
+		std::cout << inModule.c_str() << " : " << inMessage.c_str() << std::endl;
+		mFilestream.open(mFile, std::ofstream::app);
+		if (!mFilestream) {
+			std::cout << "Error: Logger Can't Log To: " << mFile.c_str() << std::endl;
 		}
-		filestream << "(" << module.c_str() << "): " << message.c_str() << std::endl;
-		filestream.close();
+		mFilestream << "(" << inModule.c_str() << "): " << inMessage.c_str() << std::endl;
+		mFilestream.close();
 	}
 
-	void Logger::clearFileContents() {
-		filestream.open(file, std::ofstream::out);
-		if (!filestream) {
-			error(file, "Logger Dtor", std::string("Could not empty the contents of file: ") + file);
+	void Logger::clearFileContents() 
+	{
+		mFilestream.open(mFile, std::ofstream::out);
+		if (!mFilestream) {
+			error(mFile, "Logger Dtor", std::string("Could not empty the contents of file: ") + mFile);
 		}
-		filestream.close();
+		mFilestream.close();
 	}
 
 }

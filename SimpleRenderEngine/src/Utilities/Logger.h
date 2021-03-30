@@ -12,25 +12,25 @@ namespace RenderEngine {
 	public:
 		static Logger& getInstance();
 
-		void debug(const std::string &filePath, std::string &module, const std::string &message);
-		void info(const std::string &filePath, const std::string &module, const std::string &message);
-		void warning(const std::string &filePath, const std::string &module, const std::string &message);
-		void error(const std::string &filePath, const std::string &module, const std::string &message);
+		void debug(const std::string& inFilePath, std::string& inModule, const std::string& inMessage);
+		void info(const std::string& inFilePath, const std::string& inModule, const std::string& inMessage);
+		void warning(const std::string& FilePath, const std::string& inModule, const std::string& inMessage);
+		void error(const std::string& inFilePath, const std::string& inModule, const std::string& inMessage);
 
 	private:
-		void logMessage(const int &priority, const std::string &module, const std::string &message);
-
+		void logMessage(const int& inPriority, const std::string& inModule, const std::string& inMessage);
 		void clearFileContents();
-		void setOutputFile(const std::string &filename);
+		void setOutputFile(const std::string& inFilename);
 
-		enum 
+	private:
+		std::set<std::string> mFilePaths;
+		std::ofstream mFilestream;
+		std::string mFile; 
+
+		enum
 		{
 			DEBUG, INFO, WARNING, ERROR
 		};
-		std::set<std::string> filePaths;
-
-		std::ofstream filestream;
-		std::string file; // Default value set to: "logged_files/log.txt"
 	};
 
 }
