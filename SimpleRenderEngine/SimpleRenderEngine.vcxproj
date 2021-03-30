@@ -99,6 +99,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;SOIL.lib;assimp-vc140-mt.lib;legacy_stdio_definitions.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)External\Assimp\lib\assimp-vc140-mt.dll" "$(SolutionDir)$(Platform)\$(Configuration)"
+copy "$(SolutionDir)External\GLEW\lib\glew32.dll" "$(SolutionDir)$(Platform)\$(Configuration)"
+copy "$(SolutionDir)External\GLFW\lib\glfw3.dll" "$(SolutionDir)$(Platform)\$(Configuration)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -129,6 +134,11 @@
       <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;SOIL.lib;assimp-vc140-mt.lib;legacy_stdio_definitions.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Users\rakes\Desktop\ARM_Coding\SimpleRenderEngine\External\GLFW\lib-vc2013;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)External\Assimp\lib\assimp-vc140-mt.dll" "$(SolutionDir)$(Platform)\$(Configuration)"
+copy "$(SolutionDir)External\GLEW\lib\glew32.dll" "$(SolutionDir)$(Platform)\$(Configuration)"
+copy "$(SolutionDir)External\GLFW\lib\glfw3.dll" "$(SolutionDir)$(Platform)\$(Configuration)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
