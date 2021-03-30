@@ -126,7 +126,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3dll.lib;glfw3.lib;opengl32.lib;glew32.lib;SOIL.lib;assimp-vc140-mt.lib;legacy_stdio_definitions.lib</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;SOIL.lib;assimp-vc140-mt.lib;legacy_stdio_definitions.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Users\rakes\Desktop\ARM_Coding\SimpleRenderEngine\External\GLFW\lib-vc2013;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -147,19 +147,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\3DEngine\Shader.cpp" />
+    <ClCompile Include="src\3DEngine\Texture\Cubemap.cpp" />
+    <ClCompile Include="src\3DEngine\Texture\Texture.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\pch.cpp" />
     <ClCompile Include="src\Platform\InputHandler.cpp" />
     <ClCompile Include="src\Platform\Window.cpp" />
     <ClCompile Include="src\Utilities\FileHandler.cpp" />
+    <ClCompile Include="src\Utilities\Loaders\ShaderLoader.cpp" />
+    <ClCompile Include="src\Utilities\Loaders\TextureLoader.cpp" />
     <ClCompile Include="src\Utilities\Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\3DEngine\Shader.h" />
+    <ClInclude Include="src\3DEngine\Texture\Cubemap.h" />
+    <ClInclude Include="src\3DEngine\Texture\Texture.h" />
     <ClInclude Include="src\Config.h" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\Platform\InputHandler.h" />
     <ClInclude Include="src\Platform\Window.h" />
     <ClInclude Include="src\Utilities\FileHandler.h" />
+    <ClInclude Include="src\Utilities\Loaders\ShaderLoader.h" />
+    <ClInclude Include="src\Utilities\Loaders\TextureLoader.h" />
     <ClInclude Include="src\Utilities\Logger.h" />
     <ClInclude Include="src\Utilities\Singleton.h" />
   </ItemGroup>

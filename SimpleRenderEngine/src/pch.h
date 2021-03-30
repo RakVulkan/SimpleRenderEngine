@@ -1,13 +1,21 @@
 #pragma once
 
+#include <cmath>
+#include <math.h>
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <string>
+#include <deque>
+#include <unordered_map>
+#include <array>
 #include <set>
+#include <iterator>
+#include <fstream>
+#include <random>
+
 #include <gl/glew.h>
-
 #include <GLFW/glfw3.h>
-
 #include <stb_image_aug.h>
 
 #include <SOIL.h>

@@ -32,14 +32,14 @@ namespace RenderEngine {
 		sScrollXDelta = 0; sScrollYDelta = 0;	
 	}
 
-	bool InputHandler::isKeyPressed(unsigned int keycode) 
+	bool InputHandler::isKeyPressed(unsigned int inKeycode) 
 	{
-		if (keycode < 0 || keycode >= MAX_KEYS) {
+		if (inKeycode < 0 || inKeycode >= MAX_KEYS) {
 			Logger::getInstance().error("logged_files/input_errors.txt", "Input Check", "Key checked is out of bounds (ie not supported)");
 			return false;
 		}
 		else {
-			return sKeys[keycode];
+			return sKeys[inKeycode];
 		}
 	}
 
@@ -63,9 +63,9 @@ namespace RenderEngine {
 		return sButtons[inCode];
 	}
 
-	void InputHandler::keyCallback(int key, int scancode, int action, int mods) {
-		sKeys[key] = action != GLFW_RELEASE;
-		sKeyPressed[key] = sKeys[key];
+	void InputHandler::keyCallback(int inKey, int inScancode, int inAction, int inMods) {
+		sKeys[inKey] = inAction != GLFW_RELEASE;
+		sKeyPressed[inKey] = sKeys[inKey];
 	}
 
 	void InputHandler::mouseButtonCallback(int button, int action, int mods) {
