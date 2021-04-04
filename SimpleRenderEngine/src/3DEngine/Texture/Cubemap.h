@@ -21,9 +21,9 @@ namespace RenderEngine {
 	};
 
 	class Cubemap {
-	public:
-		Cubemap();
-		Cubemap(CubemapSettings& inSettings);
+	public:		
+	//	Cubemap();
+		Cubemap(const CubemapSettings& inSettings);
 		~Cubemap();
 
 		void generateCubemapFace(GLenum inFace, unsigned int inFaceWidth, unsigned int inFaceHeight, GLenum inDataFormat, 

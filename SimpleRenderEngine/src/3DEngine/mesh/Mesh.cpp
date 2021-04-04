@@ -52,9 +52,13 @@ namespace RenderEngine {
 		, mIBO(0) 
 	{
 	}
- 
 
-	void Mesh::Draw() const {
+	Mesh::~Mesh()
+	{	
+	} 
+
+	void Mesh::Draw() const 
+	{
 		glBindVertexArray(mVAO);
 		if (mIndices.size() > 0) {
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIBO);

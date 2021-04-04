@@ -1,62 +1,89 @@
 #include "pch.h"
 #include "Material.h"
-
 #include <Platform/Window.h>
 
 namespace RenderEngine {
 
-	Material::Material(Texture *albedoMap, Texture *normalMap, Texture *metallicMap, Texture *roughnessMap, Texture *ambientOcclusionMap, Texture *displacementMap)
-		: mAlbedoMap(albedoMap)
-		, mNormalMap(normalMap)
-		, mMetallicMap(metallicMap)
-		, mRoughnessMap(roughnessMap)
-		, mAmbientOcclusionMap(ambientOcclusionMap)
+	Material::Material(Texture* inAlbedoMap, Texture* inNormalMap, Texture* inMetallicMap, 
+		Texture* inRoughnessMap, Texture* inAmbientOcclusionMap)
+		: mAlbedoMap(inAlbedoMap)
+		, mNormalMap(inNormalMap)
+		, mMetallicMap(inMetallicMap)
+		, mRoughnessMap(inRoughnessMap)
+		, mAmbientOcclusionMap(inAmbientOcclusionMap)
 	{
+	}
+
+	Material::~Material()
+	{
+		if (mAlbedoMap) {
+			delete mAlbedoMap;
+			mAlbedoMap = nullptr;
+		}
+
+		if (mNormalMap) {
+			delete mNormalMap;
+			mNormalMap = nullptr;
+		}
+
+		if (mMetallicMap) {
+			delete mMetallicMap;
+			mMetallicMap = nullptr;
+		}
+
+		if (mRoughnessMap) {
+			delete mRoughnessMap;
+			mRoughnessMap = nullptr;
+		}
+
+		if (mAmbientOcclusionMap) {
+			delete mAmbientOcclusionMap;
+			mAmbientOcclusionMap = nullptr;
+		}
 	}
 
 	void Material::BindMaterialInformation(Shader *shader) const 
 	{
-		int currentTextureUnit = 4;
+		int lCurrentTextureUnit = 4;
 
-		shader->setUniform("material.texture_albedo", currentTextureUnit);
+		shader->setUniform("material.texture_albedo", lCurrentTextureUnit);
 		if (mAlbedoMap) {
-			mAlbedoMap->bind(currentTextureUnit++);
+			mAlbedoMap->bind(lCurrentTextureUnit++);
 		}
 		else {
-			TextureLoader::getDefaultAlbedo()->bind(currentTextureUnit++);
+			TextureLoader::getDefaultAlbedo()->bind(lCurrentTextureUnit++);
 		}
 
-		shader->setUniform("material.texture_normal", currentTextureUnit);
+		shader->setUniform("material.texture_normal", lCurrentTextureUnit);
 		if (mNormalMap) {
-			mNormalMap->bind(currentTextureUnit++);
+			mNormalMap->bind(lCurrentTextureUnit++);
 		}
 		else {
-			TextureLoader::getDefaultNormal()->bind(currentTextureUnit++);
+			TextureLoader::getDefaultNormal()->bind(lCurrentTextureUnit++);
 		}
 
-		shader->setUniform("material.texture_metallic", currentTextureUnit);
+		shader->setUniform("material.texture_metallic", lCurrentTextureUnit);
 		if (mMetallicMap) {
-			mMetallicMap->bind(currentTextureUnit++);
+			mMetallicMap->bind(lCurrentTextureUnit++);
 		}
 		else {
-			TextureLoader::getDefaultMetallic()->bind(currentTextureUnit++);
+			TextureLoader::getDefaultMetallic()->bind(lCurrentTextureUnit++);
 		}
 
-		shader->setUniform("material.texture_roughness", currentTextureUnit);
+		shader->setUniform("material.texture_roughness", lCurrentTextureUnit);
 		if (mRoughnessMap) {
-			mRoughnessMap->bind(currentTextureUnit++);
+			mRoughnessMap->bind(lCurrentTextureUnit++);
 		}
 		else {
-			TextureLoader::getDefaultRoughness()->bind(currentTextureUnit++);
+			TextureLoader::getDefaultRoughness()->bind(lCurrentTextureUnit++);
 		}
 
-		shader->setUniform("material.texture_ao", currentTextureUnit);
+		shader->setUniform("material.texture_ao", lCurrentTextureUnit);
 		if (mAmbientOcclusionMap) {
-			mAmbientOcclusionMap->bind(currentTextureUnit++);
+			mAmbientOcclusionMap->bind(lCurrentTextureUnit++);
 		}
 		else {
-			TextureLoader::getDefaultAO()->bind(currentTextureUnit++);
+			TextureLoader::getDefaultAO()->bind(lCurrentTextureUnit++);
 		}
-
 	}
 }

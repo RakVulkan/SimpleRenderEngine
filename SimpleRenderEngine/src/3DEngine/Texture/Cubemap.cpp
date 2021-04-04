@@ -3,11 +3,7 @@
 
 namespace RenderEngine {
 	
-	Cubemap::Cubemap()
-	{
-	}
-
-	Cubemap::Cubemap(CubemapSettings &settings)
+	Cubemap::Cubemap(const CubemapSettings &settings = CubemapSettings())
 		: mCubemapID(0)
 		, mFaceWidth(0)
 		, mFaceHeight(0)

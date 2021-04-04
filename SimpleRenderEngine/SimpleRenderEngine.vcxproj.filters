@@ -1,90 +1,249 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{34823b47-6f26-41a2-90cf-43aa724f4d39}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="MeshManager">
+      <UniqueIdentifier>{6ef23ff0-9815-401a-9bab-37207645a102}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="ShaderManager">
+      <UniqueIdentifier>{557b664e-c405-4cd3-b448-ec04a0096401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InputSystem">
+      <UniqueIdentifier>{7578d171-a0ed-49e2-898c-23dca605de9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WindowSystem">
+      <UniqueIdentifier>{d6110830-0c58-40c4-9581-a264d0ea47da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LightManager">
+      <UniqueIdentifier>{c85df245-d1c0-44b1-945a-dfe93110efa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TextureManager">
+      <UniqueIdentifier>{66cb500f-3337-42c0-a0d6-7a02b0690737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{1bbc591c-4b8c-4042-a904-7f1df331fc36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{6701d0f3-b263-419d-b06f-8269130b335d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StateManager">
+      <UniqueIdentifier>{46f36727-8943-4997-951a-9ec25c835c6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameBuffer">
+      <UniqueIdentifier>{fae6754f-8045-4336-97b0-550d9cdc7b6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{1eb33f6a-e580-4a2f-b4ad-3a0921790177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3DScene">
+      <UniqueIdentifier>{06445c5e-cac2-4c11-835e-72f8e771439a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\pch.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\3DEngine\mesh\Material.cpp">
+      <Filter>MeshManager</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\3DEngine\mesh\Mesh.cpp">
+      <Filter>MeshManager</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platform\InputHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utilities\FileHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utilities\Logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\3DEngine\Texture\Cubemap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\3DEngine\Texture\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utilities\Loaders\ShaderLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utilities\Loaders\TextureLoader.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\3DEngine\mesh\Model.cpp">
+      <Filter>MeshManager</Filter>
     </ClCompile>
     <ClCompile Include="src\3DEngine\Shader.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>ShaderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\Loaders\ShaderLoader.cpp">
+      <Filter>ShaderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\mesh\common\Quad.cpp">
+      <Filter>MeshManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Lights\DirectionalLight.cpp">
+      <Filter>LightManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Lights\Light.cpp">
+      <Filter>LightManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Lights\PointLight.cpp">
+      <Filter>LightManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Lights\SpotLight.cpp">
+      <Filter>LightManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Texture\Texture.cpp">
+      <Filter>TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\Loaders\TextureLoader.cpp">
+      <Filter>TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\InputHandler.cpp">
+      <Filter>InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Window.cpp">
+      <Filter>WindowSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Camera\Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\FileHandler.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\Logger.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Renderer\Renderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Renderer\RenderPass\RenderPass.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\3DEngine\mesh\common\Cube.cpp">
+      <Filter>MeshManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Texture\Cubemap.cpp">
+      <Filter>TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilities\Time.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Renderer\GLState.cpp">
+      <Filter>StateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Renderer\RenderPass\PbrRenderPass.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Scene3D\Scene3D.cpp">
+      <Filter>3DScene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Scene3D\RenderableSceneObject.cpp">
+      <Filter>3DScene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Renderer\SceneObjectRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Lights\LightManager.cpp">
+      <Filter>LightManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Scene3D\Skybox.cpp">
+      <Filter>3DScene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DEngine\Framebuffer.cpp">
+      <Filter>FrameBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\pch.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\3DEngine\mesh\Model.h">
+      <Filter>MeshManager</Filter>
     </ClInclude>
-    <ClInclude Include="src\Config.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\3DEngine\mesh\Mesh.h">
+      <Filter>MeshManager</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\InputHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utilities\Singleton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utilities\FileHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utilities\Logger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\3DEngine\mesh\Material.h">
+      <Filter>MeshManager</Filter>
     </ClInclude>
     <ClInclude Include="src\Utilities\Loaders\ShaderLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utilities\Loaders\TextureLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\3DEngine\Texture\Cubemap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\3DEngine\Texture\Texture.h">
-      <Filter>Header Files</Filter>
+      <Filter>ShaderManager</Filter>
     </ClInclude>
     <ClInclude Include="src\3DEngine\Shader.h">
-      <Filter>Header Files</Filter>
+      <Filter>ShaderManager</Filter>
     </ClInclude>
+    <ClInclude Include="src\3DEngine\mesh\common\Cube.h">
+      <Filter>MeshManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\mesh\common\Quad.h">
+      <Filter>MeshManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Lights\DirectionalLight.h">
+      <Filter>LightManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Lights\Light.h">
+      <Filter>LightManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Lights\PointLight.h">
+      <Filter>LightManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Lights\SpotLight.h">
+      <Filter>LightManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Texture\Cubemap.h">
+      <Filter>TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Texture\Texture.h">
+      <Filter>TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\Loaders\TextureLoader.h">
+      <Filter>TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\InputHandler.h">
+      <Filter>InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Window.h">
+      <Filter>WindowSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Camera\Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Camera\ICamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\FileHandler.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\Logger.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Renderer\Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Renderer\RenderPass\RenderPassType.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilities\Singleton.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Config.h" />
+    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Utilities\Time.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Renderer\GLState.h">
+      <Filter>StateManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Renderer\RenderPass\PbrRenderPass.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Scene3D\Scene3D.h">
+      <Filter>3DScene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Scene3D\RenderableSceneObject.h">
+      <Filter>3DScene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Renderer\SceneObjectRenderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Renderer\RenderPass\RenderPass.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Lights\LightManager.h">
+      <Filter>LightManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Scene3D\Skybox.h">
+      <Filter>3DScene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DEngine\Framebuffer.h">
+      <Filter>FrameBuffer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Shaders\PBR_Model.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="src\Shaders\Skybox.glsl">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

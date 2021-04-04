@@ -8,21 +8,19 @@ namespace RenderEngine {
 
 	class Material {
 	public:
-		Material(Texture *albedoMap = nullptr, Texture *normalMap = nullptr, Texture *metallicMap = nullptr, Texture *roughnessMap = nullptr, 
-				 Texture *ambientOcclusionMap = nullptr, Texture *displacementMap = nullptr);
+		Material(Texture* inAlbedoMap = nullptr, Texture* inNormalMap = nullptr, Texture* inMetallicMap = nullptr, 
+			Texture* inRoughnessMap = nullptr, Texture* inAmbientOcclusionMap = nullptr);
+		~Material();
+		
+		void BindMaterialInformation(Shader* inShader) const;
 
-		// Assumes the shader is already bound
-		void BindMaterialInformation(Shader *shader) const;
-
-		inline void setAlbedoMap(Texture *texture) { mAlbedoMap = texture; }
-		inline void setNormalMap(Texture *texture) { mNormalMap = texture; }
-		inline void setMetallicMap(Texture *texture) { mMetallicMap = texture; }
-		inline void setRoughnessMap(Texture *texture) { mRoughnessMap = texture; }
-		inline void setAmbientOcclusionMap(Texture *texture) { mAmbientOcclusionMap = texture; }		
+		inline void setAlbedoMap(Texture* inTexture) { mAlbedoMap = inTexture; }
+		inline void setNormalMap(Texture* inTexture) { mNormalMap = inTexture; }
+		inline void setMetallicMap(Texture* inTexture) { mMetallicMap = inTexture; }
+		inline void setRoughnessMap(Texture* inTexture) { mRoughnessMap = inTexture; }
+		inline void setAmbientOcclusionMap(Texture* inTexture) { mAmbientOcclusionMap = inTexture; }
 		
 	private:
 		Texture *mAlbedoMap, *mNormalMap, *mMetallicMap, *mRoughnessMap, *mAmbientOcclusionMap;
-
 	};
-
 }

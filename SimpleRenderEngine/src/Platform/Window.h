@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-#include "../Utilities/Logger.h"
+#include <Utilities/Logger.h>
 #include <Platform/InputHandler.h>
 
 namespace RenderEngine {
@@ -17,8 +17,10 @@ namespace RenderEngine {
 		static void clear();
 		static void bind();
 
-		inline int getWidth() const { return sWidth; }
-		inline int getHeight() const { return sHeight; }
+		static int getWidth() { return sWidth; }
+		static int getHeight() { return sHeight; }
+		static inline int getRenderResolutionWidth() { return (int)(sWidth * SUPERSAMPLING_FACTOR); }
+		static inline int getRenderResolutionHeight() { return (int)(sHeight * SUPERSAMPLING_FACTOR); }
 
 	private:
 		bool init();

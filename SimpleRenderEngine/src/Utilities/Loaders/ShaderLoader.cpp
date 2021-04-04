@@ -4,23 +4,24 @@
 namespace RenderEngine {
 
 	// Static declarations
-	std::unordered_map<std::size_t, Shader*> ShaderLoader::s_ShaderCache;
-	std::hash<std::string> ShaderLoader::s_Hasher;
+	std::unordered_map<std::size_t, Shader*> ShaderLoader::sShaderCache;
+	std::hash<std::string> ShaderLoader::sHasher;
 
-	Shader* ShaderLoader::loadShader(const std::string &path) {
-		std::size_t hash = s_Hasher(path);
+	Shader* ShaderLoader::loadShader(const std::string& inPath) 
+	{
+		std::size_t hash = sHasher(inPath);
 
 		// Check the cache
-		auto iter = s_ShaderCache.find(hash);
-		if (iter != s_ShaderCache.end()) {
+		auto iter = sShaderCache.find(hash);
+		if (iter != sShaderCache.end()) {
 			return iter->second;
 		}
 
 		// Load the shader
-		Shader *shader = new Shader(path);
+		Shader *shader = new Shader(inPath);
 
-		s_ShaderCache.insert(std::pair<std::size_t, Shader*>(hash, shader));
-		return s_ShaderCache[hash];
+		sShaderCache.insert(std::pair<std::size_t, Shader*>(hash, shader));
+		return sShaderCache[hash];
 	}
 
 }

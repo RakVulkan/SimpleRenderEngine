@@ -35,7 +35,8 @@ namespace RenderEngine {
 		return glm::perspective(glm::radians(mCurrentFOV), (float)Window::getRenderResolutionWidth() / (float)Window::getRenderResolutionHeight(), NEAR_PLANE, FAR_PLANE);
 	}
 
-	void Camera::processInput(float deltaTime) {
+	void Camera::processInput(float deltaTime) 
+	{		 
 		// Movement speed
 		if (InputHandler::isKeyPressed(GLFW_KEY_LEFT_SHIFT))
 			mCurrentMovementSpeed = Camera_MAX_SPEED * 4.0f;

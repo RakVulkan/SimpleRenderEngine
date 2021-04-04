@@ -2,9 +2,6 @@
 
 #include <3DEngine/camera/ICamera.h>
 #include <Platform/Window.h>
-constexpr float Camera_MAX_SPEED = 40.0f;
-constexpr float Camera_ROTATION_SENSITIVITY = 0.0f;
-constexpr float Camera_MAX_FOV = 90.0f;
 
 namespace RenderEngine {
 

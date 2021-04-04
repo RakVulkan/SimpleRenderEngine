@@ -1,25 +1,29 @@
-
+#include "pch.h"
 #include "TextureLoader.h"
-#include "../Logger.h"
-
-constexpr int CUBEMAP_FACE_COUNT = 6;
+#include <Utilities/Logger.h>
 
 namespace RenderEngine {
 
 	// Static declarations
 	std::unordered_map<std::string, Texture*> TextureLoader::mTextureCache;
+	Texture *TextureLoader::s_DefaultAlbedo;
+	Texture *TextureLoader::s_DefaultNormal;
+	Texture *TextureLoader::s_WhiteTexture; Texture *TextureLoader::s_BlackTexture;
 
-	Texture* TextureLoader::load2DTexture(const std::string& inPath, TextureSettings* inSettings) 
-	{	
-		auto iter = mTextureCache.find(inPath);
+	Texture* TextureLoader::load2DTexture(std::string &&path, TextureSettings *settings) {
+		// Check the cache
+		auto iter = mTextureCache.find(path);
 		if (iter != mTextureCache.end()) {
 			return iter->second;
 		}
-	
+
+		// Load the texture
 		int width, height, numComponents;
-		unsigned char* image = SOIL_load_image(inPath.c_str(), &width, &height, &numComponents, SOIL_LOAD_AUTO);
+		//unsigned char *data = stbi_load(path.c_str(), &width, &height, &numComponents, 0);
+
+		unsigned char* image = SOIL_load_image(path.c_str(), &width, &height, &numComponents, SOIL_LOAD_AUTO);
 		if (!image) {
-			Logger::getInstance().error("logged_files/texture_loading.txt", "texture load fail - path:", inPath);
+			Logger::getInstance().error("logged_files/texture_loading.txt", "texture load fail - path:", path);
 			stbi_image_free(image);
 			return nullptr;
 		}
@@ -32,8 +36,8 @@ namespace RenderEngine {
 		}
 
 		Texture *texture = nullptr;
-		if (inSettings != nullptr) {
-			texture = new Texture(*inSettings);
+		if (settings != nullptr) {
+			texture = new Texture(*settings);
 		}
 		else {
 			texture = new Texture();
@@ -41,24 +45,22 @@ namespace RenderEngine {
 
 		texture->generate2DTexture(width, height, dataFormat, GL_UNSIGNED_BYTE, image);
 
-		mTextureCache.insert(std::pair<std::string, Texture*>(inPath, texture));
+		mTextureCache.insert(std::pair<std::string, Texture*>(path, texture));
 		stbi_image_free(image);
 
-		return mTextureCache[inPath];
+		return mTextureCache[path];
 	}
 
-	Cubemap* TextureLoader::loadCubemapTexture(const std::string& inRight, const std::string& inLeft, const std::string& inTop,
-		const std::string& inBottom, const std::string& inBack, const std::string& inFront, CubemapSettings* inSettings)
-	{
-		Cubemap *cubemap = new Cubemap();
-		if (inSettings != nullptr)
-			cubemap->setCubemapSettings(*inSettings);
+	Cubemap* TextureLoader::loadCubemapTexture(const std::string &right, const std::string &left, const std::string &top, const std::string &bottom, const std::string &back, const std::string &front, CubemapSettings *settings) {
+		Cubemap *cubemap = new Cubemap(*settings);
+		if (settings != nullptr)
+			cubemap->setCubemapSettings(*settings);
 
-		std::vector<std::string> faces = { inRight, inLeft, inTop, inBottom, inBack, inFront };
+		std::vector<std::string> faces = { right, left, top, bottom, back, front };
 
-		// Textures for the cubemap
+		// Load the textures for the cubemap
 		int width, height, numComponents;
-		for (unsigned int i = 0; i < CUBEMAP_FACE_COUNT; ++i) {
+		for (unsigned int i = 0; i < 6; ++i) {
 			unsigned char *data = stbi_load(faces[i].c_str(), &width, &height, &numComponents, 0);
 
 			if (data) {
@@ -80,5 +82,33 @@ namespace RenderEngine {
 		}
 		
 		return cubemap;
+	}
+
+	void TextureLoader::initializeDefaultTextures() 
+	{
+		// Setup texture and minimal filtering because they are 1x1 textures so they require none
+		TextureSettings srgbTextureSettings;
+		srgbTextureSettings.IsSRGB = true;
+
+		s_DefaultAlbedo = load2DTexture(std::string("resources/textures/Default/defaultAlbedo.png"), &srgbTextureSettings);
+		s_DefaultAlbedo->bind();
+		s_DefaultAlbedo->setAnisotropicFilteringMode(1.0f);
+		s_DefaultAlbedo->setTextureMinFilter(GL_NEAREST);
+		s_DefaultAlbedo->setTextureMagFilter(GL_NEAREST);
+		s_DefaultNormal = load2DTexture(std::string("resources/textures/Default/defaultNormal.png"));
+		s_DefaultNormal->bind();
+		s_DefaultNormal->setAnisotropicFilteringMode(1.0f);
+		s_DefaultNormal->setTextureMinFilter(GL_NEAREST);
+		s_DefaultNormal->setTextureMagFilter(GL_NEAREST);
+		s_WhiteTexture = load2DTexture(std::string("resources/textures/Default/white.png"));
+		s_WhiteTexture->bind();
+		s_WhiteTexture->setAnisotropicFilteringMode(1.0f);
+		s_WhiteTexture->setTextureMinFilter(GL_NEAREST);
+		s_WhiteTexture->setTextureMagFilter(GL_NEAREST);
+		s_BlackTexture = load2DTexture(std::string("resources/textures/Default/black.png"));
+		s_BlackTexture->bind();
+		s_BlackTexture->setAnisotropicFilteringMode(1.0f);
+		s_BlackTexture->setTextureMinFilter(GL_NEAREST);
+		s_BlackTexture->setTextureMagFilter(GL_NEAREST);
 	}
 }

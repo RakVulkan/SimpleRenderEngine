@@ -83,23 +83,5 @@ namespace RenderEngine {
 		sScrollXDelta = xoffset;
 		sScrollYDelta = yoffset;
 	}
-
-	bool InputHandler::getButton(int keyCode) {
-		if (keyCode < 0 || keyCode >= MAX_BUTTONS) {
-			Logger::getInstance().error("logged_files/input_errors.txt", "Input Get button", "Button get is out of bounds (ie not supported)");
-			return false;
-		}
-
-		return sKeys[keyCode] != GLFW_RELEASE;
-	}
-
-	bool InputHandler::getButtonDown(int keyCode) {
-		if (keyCode < 0 || keyCode >= MAX_BUTTONS) {
-			Logger::getInstance().error("logged_files/input_errors.txt", "Input Get button", "Button get is out of bounds (ie not supported)");
-			return false;
-		}
-
-		return sKeys[keyCode] == GLFW_PRESS;
-	}
 }
 

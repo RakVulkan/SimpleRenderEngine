@@ -6,10 +6,10 @@ namespace RenderEngine {
 
 	class ShaderLoader {
 	public:
-		static Shader* loadShader(const std::string &path);
+		static Shader* loadShader(const std::string& inPath);
 	private:
-		static std::unordered_map<std::size_t, Shader*> s_ShaderCache;
-		static std::hash<std::string> s_Hasher;
+		static std::unordered_map<std::size_t, Shader*> sShaderCache;
+		static std::hash<std::string> sHasher;
 	};
 
 }

@@ -17,8 +17,6 @@ namespace RenderEngine {
 		static bool isKeyPressed(unsigned int inKeycode);
 		static float getKeyPressed(unsigned int inKeycode);
 		static bool isMouseButtonPressed(unsigned int inCode);
-		static bool getButton(int inKeycode);
-		static bool getButtonDown(int inKeycode);
 
 		void keyCallback(int inKey, int inScancode, int inAction, int inMods);
 		void mouseButtonCallback(int inButton, int inAction, int inMods);
@@ -26,13 +24,13 @@ namespace RenderEngine {
 		void scrollCallback(double inXoffset, double inYoffset);	
 
 		// Getters and setters
-		inline double getMouseX() const { return sMouseX; }
-		inline double getMouseY() const { return sMouseY; }
-		inline double getMouseXDelta() const { return sMouseXDelta; }
-		inline double getMouseYDelta() const { return sMouseYDelta; }
-		inline double getScrollXDelta() const { return sScrollXDelta; }
-		inline double getScrollYDelta() const { return sScrollYDelta; }
-		inline void getMousePosition(double& x, double& y) const { x = sMouseX; y = sMouseY; }
+		static double getMouseX() { return sMouseX; }
+		static double getMouseY() { return sMouseY; }
+		static double getMouseXDelta() { return sMouseXDelta; }
+		static double getMouseYDelta() { return sMouseYDelta; }
+		static double getScrollXDelta() { return sScrollXDelta; }
+		static double getScrollYDelta() { return sScrollYDelta; }
+		static void getMousePosition(double& x, double& y) { x = sMouseX; y = sMouseY; }
 
 		inline void setMouseX(double value) const { sMouseX = value; }
 		inline void setMouseY(double value) const { sMouseY = value; }

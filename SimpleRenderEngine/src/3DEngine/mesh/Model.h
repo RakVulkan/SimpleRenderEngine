@@ -5,7 +5,6 @@
 #include <3DEngine/Renderer/RenderPass/RenderPassType.h>
 #include <Utilities/Loaders/TextureLoader.h>
 
-
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
