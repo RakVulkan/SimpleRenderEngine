@@ -3,9 +3,9 @@
 
 namespace RenderEngine {
 
-	Light::Light(float lightIntensity, glm::vec3 &lightColour) 
-		: mIntensity(lightIntensity)
-		, mLightColour(lightColour)
+	Light::Light(float inLightIntensity, glm::vec3& inLightColour) 
+		: mIntensity(inLightIntensity)
+		, mLightColour(inLightColour)
 		, mIsStatic(false) 
 	{
 	}

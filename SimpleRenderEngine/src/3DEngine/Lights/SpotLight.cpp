@@ -3,21 +3,26 @@
 
 namespace RenderEngine {
 
-	SpotLight::SpotLight(float lightIntensity, glm::vec3 &&lightColour, float attenuationRadius, glm::vec3 &&pos, glm::vec3 &&dir, float cutOffAngle, float outerCutOffAngle)
-		: Light(lightIntensity, lightColour)
-		, mAttenuationRadius(attenuationRadius)
-		, mPosition(pos), mDirection(dir)
-		, mCutOff(cutOffAngle)
-		, mOuterCutOff(outerCutOffAngle) {}
+	SpotLight::SpotLight(float inLightIntensity, glm::vec3&& inLightColour, float inAttenuationRadius,
+		glm::vec3&& inPos, glm::vec3&& inDir, float inCutOffAngle, float inOuterCutOffAngle)
+		: Light(inLightIntensity, inLightColour)
+		, mAttenuationRadius(inAttenuationRadius)
+		, mPosition(inPos)
+		, mDirection(inDir)
+		, mCutOff(inCutOffAngle)
+		, mOuterCutOff(inOuterCutOffAngle) 
+	{
+	}
 
-	void SpotLight::setupUniforms(Shader *shader, int currentLightIndex) {
-		shader->setUniform(("spotLights[" + std::to_string(currentLightIndex) + "].position").c_str(), mPosition);
-		shader->setUniform(("spotLights[" + std::to_string(currentLightIndex) + "].direction").c_str(), mDirection);
-		shader->setUniform(("spotLights[" + std::to_string(currentLightIndex) + "].intensity").c_str(), mIntensity);
-		shader->setUniform(("spotLights[" + std::to_string(currentLightIndex) + "].lightColour").c_str(), mLightColour);
-		shader->setUniform(("spotLights[" + std::to_string(currentLightIndex) + "].attenuationRadius").c_str(), mAttenuationRadius);
-		shader->setUniform(("spotLights[" + std::to_string(currentLightIndex) + "].cutOff").c_str(), mCutOff);
-		shader->setUniform(("spotLights[" + std::to_string(currentLightIndex) + "].outerCutOff").c_str(), mOuterCutOff);
+	void SpotLight::setupUniforms(Shader* inShader, int inCurrentLightIndex) 
+	{
+		inShader->setUniform(("spotLights[" + std::to_string(inCurrentLightIndex) + "].position").c_str(), mPosition);
+		inShader->setUniform(("spotLights[" + std::to_string(inCurrentLightIndex) + "].direction").c_str(), mDirection);
+		inShader->setUniform(("spotLights[" + std::to_string(inCurrentLightIndex) + "].intensity").c_str(), mIntensity);
+		inShader->setUniform(("spotLights[" + std::to_string(inCurrentLightIndex) + "].lightColour").c_str(), mLightColour);
+		inShader->setUniform(("spotLights[" + std::to_string(inCurrentLightIndex) + "].attenuationRadius").c_str(), mAttenuationRadius);
+		inShader->setUniform(("spotLights[" + std::to_string(inCurrentLightIndex) + "].cutOff").c_str(), mCutOff);
+		inShader->setUniform(("spotLights[" + std::to_string(inCurrentLightIndex) + "].outerCutOff").c_str(), mOuterCutOff);
 	}
 
 }

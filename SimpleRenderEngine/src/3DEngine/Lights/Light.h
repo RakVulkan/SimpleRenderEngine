@@ -6,14 +6,14 @@ namespace RenderEngine {
 
 	class Light {
 	public:
-		Light(float lightIntensity, glm::vec3 &lightColour);
+		Light(float inLightIntensity, glm::vec3& inLightColour);
 
-		virtual void setupUniforms(Shader *shader, int currentLightIndex) = 0;
+		virtual void setupUniforms(Shader* inShader, int inCurrentLightIndex) = 0;
 	protected:
 		float mIntensity;
 		glm::vec3 mLightColour;
 
-		bool mIsStatic; // Should be true if the light will never have any of it's properties changed
+		bool mIsStatic; 
 	};
 
 }

@@ -5,14 +5,14 @@
 namespace RenderEngine {
 	
 	// Forward declaration
-	class DynamicLightManager;
+	class LightManager;
 
 	class DirectionalLight : public Light 
 	{
-		friend DynamicLightManager;
+		friend LightManager;
 	public:
-		DirectionalLight(float lightIntensity, glm::vec3 &&lightColour, glm::vec3 &&dir);
-		virtual void setupUniforms(Shader *shader, int currentLightIndex) override;
+		DirectionalLight(float inLightIntensity, glm::vec3&& inLightColour, glm::vec3&& inDir);
+		virtual void setupUniforms(Shader* inShader, int inCurrentLightIndex) override;
 
 	private:
 		glm::vec3 mDirection;

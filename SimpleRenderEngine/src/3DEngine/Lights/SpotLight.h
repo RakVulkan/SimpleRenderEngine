@@ -4,14 +4,15 @@
 
 namespace RenderEngine {
 
-	class DynamicLightManager;
+	class LightManager;
 
 	class SpotLight : public Light {
-		friend DynamicLightManager;
+		friend LightManager;
 	public:
-		SpotLight(float lightIntensity, glm::vec3 &&lightColour, float attenuationRadius, glm::vec3 &&pos, glm::vec3 &&dir, float cutOffAngle, float outerCutOffAngle);
+		SpotLight(float inLightIntensity, glm::vec3&& inLightColour, float inAttenuationRadius, 
+			glm::vec3&& inPos, glm::vec3&& inDir, float inCutOffAngle, float inOuterCutOffAngle);
 	
-		virtual void setupUniforms(Shader *shader, int currentLightIndex) override;
+		virtual void setupUniforms(Shader* inShader, int inCurrentLightIndex) override;
 	private:
 		float mAttenuationRadius;
 		glm::vec3 mPosition, mDirection;

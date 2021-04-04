@@ -3,15 +3,18 @@
 
 namespace RenderEngine {
 
-	PointLight::PointLight(float lightIntensity, glm::vec3 &&lightColour, float attenuationRadius, glm::vec3 &&pos)
-		: Light(lightIntensity, lightColour)
-		, mAttenuationRadius(attenuationRadius)
-		, mPosition(pos) {}
+	PointLight::PointLight(float inLightIntensity, glm::vec3&& inLightColour, float inAttenuationRadius, glm::vec3&& inPos)
+		: Light(inLightIntensity, inLightColour)
+		, mAttenuationRadius(inAttenuationRadius)
+		, mPosition(inPos) 
+	{
+	}
 
-	void PointLight::setupUniforms(Shader *shader, int currentLightIndex) {
-		shader->setUniform(("pointLights[" + std::to_string(currentLightIndex) + "].position").c_str(), mPosition);
-		shader->setUniform(("pointLights[" + std::to_string(currentLightIndex) + "].intensity").c_str(), mIntensity);
-		shader->setUniform(("pointLights[" + std::to_string(currentLightIndex) + "].lightColour").c_str(), mLightColour);
-		shader->setUniform(("pointLights[" + std::to_string(currentLightIndex) + "].attenuationRadius").c_str(), mAttenuationRadius);
+	void PointLight::setupUniforms(Shader* inShader, int inCurrentLightIndex) 
+	{
+		inShader->setUniform(("pointLights[" + std::to_string(inCurrentLightIndex) + "].position").c_str(), mPosition);
+		inShader->setUniform(("pointLights[" + std::to_string(inCurrentLightIndex) + "].intensity").c_str(), mIntensity);
+		inShader->setUniform(("pointLights[" + std::to_string(inCurrentLightIndex) + "].lightColour").c_str(), mLightColour);
+		inShader->setUniform(("pointLights[" + std::to_string(inCurrentLightIndex) + "].attenuationRadius").c_str(), mAttenuationRadius);
 	}
 }

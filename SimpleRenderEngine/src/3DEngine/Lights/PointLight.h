@@ -4,14 +4,14 @@
 
 namespace RenderEngine {
 
-	class DynamicLightManager;
+	class LightManager;
 
 	class PointLight : public Light {
-		friend DynamicLightManager;
+		friend LightManager;
 	public:
-		PointLight(float lightIntensity, glm::vec3 &&lightColour, float attenuationRadius, glm::vec3 &&pos);
+		PointLight(float inLightIntensity, glm::vec3&& inLightColour, float inAttenuationRadius, glm::vec3&& inPos);
 
-		virtual void setupUniforms(Shader *shader, int currentLightIndex) override;
+		virtual void setupUniforms(Shader* inShader, int inCurrentLightIndex) override;
 	private:
 		float mAttenuationRadius;
 		glm::vec3 mPosition;

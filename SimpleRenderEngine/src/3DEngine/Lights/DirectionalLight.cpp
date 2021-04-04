@@ -3,16 +3,16 @@
 
 namespace RenderEngine {
 
-	DirectionalLight::DirectionalLight(float lightIntensity, glm::vec3 &&lightColour, glm::vec3 &&dir)
-		: Light(lightIntensity, lightColour)
-		, mDirection(dir) 
+	DirectionalLight::DirectionalLight(float inLightIntensity, glm::vec3&& inLightColour, glm::vec3&& inDir)
+		: Light(inLightIntensity, inLightColour)
+		, mDirection(inDir)
 	{
 	}
 
-	void DirectionalLight::setupUniforms(Shader *shader, int currentLightIndex) {
-		shader->setUniform(("dirLights[" + std::to_string(currentLightIndex) + "].direction").c_str(), mDirection);
-		shader->setUniform(("dirLights[" + std::to_string(currentLightIndex) + "].intensity").c_str(), mIntensity);
-		shader->setUniform(("dirLights[" + std::to_string(currentLightIndex) + "].lightColour").c_str(), mLightColour);
+	void DirectionalLight::setupUniforms(Shader* inShader, int inCurrentLightIndex) {
+		inShader->setUniform(("dirLights[" + std::to_string(inCurrentLightIndex) + "].direction").c_str(), mDirection);
+		inShader->setUniform(("dirLights[" + std::to_string(inCurrentLightIndex) + "].intensity").c_str(), mIntensity);
+		inShader->setUniform(("dirLights[" + std::to_string(inCurrentLightIndex) + "].lightColour").c_str(), mLightColour);
 	}
 
 }
