@@ -6,9 +6,9 @@ SimpleRenderEngine is a C++ and OpenGL based render engine. Currently it support
 
 Screenshots of the PBR rendering output.
 
-![](Screenshot1.png "Screenshot")
-![](Screenshot1.png "Screenshot")
-
+![](OutputImages/Screenshot1.png "Screenshot")
+![](OutputImages/Screenshot2.png "Screenshot")
+![](OutputImages/Screenshot3.png "Screenshot")
 
 PBR Materials from: http://freepbr.com
 
