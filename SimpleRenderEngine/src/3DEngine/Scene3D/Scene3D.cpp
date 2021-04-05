@@ -11,7 +11,8 @@ namespace RenderEngine {
 		: mSceneCamera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f) 
 		, mSceneObjectRenderer(getCamera())
 		, mLightManager(new LightManager())
-	{
+	{   
+		// Get the OpenGL global state
 		mGLState = GLState::getInstance();
 		init();
 	}
@@ -22,19 +23,21 @@ namespace RenderEngine {
 			delete mSkybox;
 			mSkybox = nullptr;
 		}
+
 		if (mLightManager) {
 			delete mLightManager;
 			mLightManager = nullptr;
 		}
 		
 		for (auto *lRenderableObject : mRenderableSceneObjects) {
-			delete lRenderableObject;			
+			delete lRenderableObject;	
+			lRenderableObject = nullptr;
 		}		
 	}
 
-	// Intializes all the models in the scene along with material properties
+	// Intializes all the scene objects along with material properties. 
 	void Scene3D::init() 
-	{
+	{   
 		TextureSettings srgbTextureSettings;
 		srgbTextureSettings.IsSRGB = true;
     
@@ -43,7 +46,7 @@ namespace RenderEngine {
 		mRenderableSceneObjects.push_back(new RenderableSceneObject(glm::vec3(950.0f, 165.5f, 1000.0f), 
 			glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::radians(-90.0f), lPbrGunModel, nullptr, true, false));
         
-		// Materials setup
+		// Materials setup for PBR Gun model
 		Texture* lPbrGunModelAlbedo = TextureLoader::load2DTexture(std::string("resources/3DModels/Cerberus/cerberus_A.png"));
 		Texture* lPbrGunModelNormal = TextureLoader::load2DTexture(std::string("resources/3DModels/Cerberus/cerberus_N.png"));
 		Texture* lPbrGunModelMetallic = TextureLoader::load2DTexture(std::string("resources/3DModels/Cerberus/cerberus_M.png"));
@@ -58,7 +61,7 @@ namespace RenderEngine {
 		mRenderableSceneObjects.push_back(new RenderableSceneObject(glm::vec3(950.0f, -50.0f, 1000.0f), 
 			glm::vec3(200.0f, 200.0f, 200.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::radians(0.0f), lFloorModel, nullptr, true, false));
 
-		// Materials setup
+		// Materials setup for Floor model
 		Texture* lPlaneAlbedo = TextureLoader::load2DTexture(std::string("resources/textures/PBR/HardwoodBrown/hardwood-brown-planks-albedo.png"));
 		Texture* lPlaneNormal = TextureLoader::load2DTexture(std::string("resources/textures/PBR/HardwoodBrown/hardwood-brown-planks-normal-dx.png"));
 		Texture* lPlaneMettalic = TextureLoader::load2DTexture(std::string("resources/textures/PBR/HardwoodBrown/hardwood-brown-planks-metallic.png"));
@@ -133,6 +136,7 @@ namespace RenderEngine {
 		mSceneCamera.setPosition(glm::vec3(1100.0f, 400.0f, 1600.0f));
 	}
 
+	// When the scene got updated, camera and light position will be updated
 	void Scene3D::onUpdate(float deltaTime) 
 	{
 		// Camera Update
@@ -141,6 +145,8 @@ namespace RenderEngine {
 		mLightManager->setSpotLightPosition(0, mSceneCamera.getPosition());
 	}
 
+	// Iterate over the list of renderable scene objects and seprate the objects into opaque , transparent objects.
+	// The separation of opaque and transparent objects adds benefit to achieve better FPS
 	void Scene3D::addSceneObjectsToRenderer()
 	{
 		auto iter = mRenderableSceneObjects.begin();
@@ -150,30 +156,6 @@ namespace RenderEngine {
 				mSceneObjectRenderer.addTransparentObject(curr); 
 			}
 			else {
-				mSceneObjectRenderer.addOpaqueObject(curr);
-			}
-			iter++;
-		}
-	}
-
-	void Scene3D::addTransparentSceneObjectsToRenderer()
-	{
-		auto iter = mRenderableSceneObjects.begin();
-		while (iter != mRenderableSceneObjects.end()) {
-			RenderableSceneObject *curr = *iter;
-			if (curr->getTransparent()) {
-				mSceneObjectRenderer.addTransparentObject(curr);
-			}
-			iter++;
-		}
-	}
-
-	void Scene3D::addOpaqueSceneObjectsToRenderer()
-	{
-		auto iter = mRenderableSceneObjects.begin();
-		while (iter != mRenderableSceneObjects.end()) {
-			RenderableSceneObject *curr = *iter;
-			if (!curr->getTransparent()) {
 				mSceneObjectRenderer.addOpaqueObject(curr);
 			}
 			iter++;

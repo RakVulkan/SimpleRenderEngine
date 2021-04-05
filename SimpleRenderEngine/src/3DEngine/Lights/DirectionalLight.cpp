@@ -9,10 +9,11 @@ namespace RenderEngine {
 	{
 	}
 
-	void DirectionalLight::setupUniforms(Shader* inShader, int inCurrentLightIndex) {
+	// Sets uniforms for the directional light properties
+	void DirectionalLight::setupUniforms(Shader* inShader, int inCurrentLightIndex) 
+	{
 		inShader->setUniform(("dirLights[" + std::to_string(inCurrentLightIndex) + "].direction").c_str(), mDirection);
 		inShader->setUniform(("dirLights[" + std::to_string(inCurrentLightIndex) + "].intensity").c_str(), mIntensity);
 		inShader->setUniform(("dirLights[" + std::to_string(inCurrentLightIndex) + "].lightColour").c_str(), mLightColour);
 	}
-
 }

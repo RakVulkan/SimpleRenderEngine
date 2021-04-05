@@ -10,13 +10,9 @@ namespace RenderEngine {
 	{
 	public:
 		LightManager();
+		~LightManager();
 
-		void bindLightingUniforms(Shader* inShader);
-		void bindStaticLightingUniforms(Shader* inShader);
-
-		void addDirectionalLight(DirectionalLight& inDirectionalLight);
-		void addPointLight(PointLight& inPointLight);
-		void addSpotLight(SpotLight& inSpotLight);
+		void bindLightingUniforms(Shader* inShader);	
 
 		// Control functions for directional lights
 		void setDirectionalLightDirection(unsigned int inIndex, const glm::vec3& inDir);
@@ -30,7 +26,12 @@ namespace RenderEngine {
 		const glm::vec3& getDirectionalLightDirection(unsigned int inIndex);
 
 	private:
-		void init();		
+		void init();	
+		void addDirectionalLight(DirectionalLight& inDirectionalLight);
+		void addPointLight(PointLight& inPointLight);
+		void addSpotLight(SpotLight& inSpotLight);
+
+	private:
 		std::vector<DirectionalLight> mDirectionalLights;
 		std::vector<PointLight> mPointLights;
 		std::vector<SpotLight> mSpotLights;

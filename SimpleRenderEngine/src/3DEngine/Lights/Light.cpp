@@ -9,4 +9,8 @@ namespace RenderEngine {
 		, mIsStatic(false) 
 	{
 	}
+
+	Light::~Light()
+	{
+	}
 }

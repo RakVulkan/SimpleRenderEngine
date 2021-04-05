@@ -14,6 +14,7 @@ namespace RenderEngine {
 	{
 	}
 
+	// Sets Uniforms for the Spot light properties
 	void SpotLight::setupUniforms(Shader* inShader, int inCurrentLightIndex) 
 	{
 		inShader->setUniform(("spotLights[" + std::to_string(inCurrentLightIndex) + "].position").c_str(), mPosition);
@@ -24,5 +25,4 @@ namespace RenderEngine {
 		inShader->setUniform(("spotLights[" + std::to_string(inCurrentLightIndex) + "].cutOff").c_str(), mCutOff);
 		inShader->setUniform(("spotLights[" + std::to_string(inCurrentLightIndex) + "].outerCutOff").c_str(), mOuterCutOff);
 	}
-
 }

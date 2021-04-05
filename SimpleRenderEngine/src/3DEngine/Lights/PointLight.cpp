@@ -10,6 +10,7 @@ namespace RenderEngine {
 	{
 	}
 
+	// Sets Uniforms for the point light properties
 	void PointLight::setupUniforms(Shader* inShader, int inCurrentLightIndex) 
 	{
 		inShader->setUniform(("pointLights[" + std::to_string(inCurrentLightIndex) + "].position").c_str(), mPosition);

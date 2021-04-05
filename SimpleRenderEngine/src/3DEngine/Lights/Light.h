@@ -7,6 +7,7 @@ namespace RenderEngine {
 	class Light {
 	public:
 		Light(float inLightIntensity, glm::vec3& inLightColour);
+		virtual ~Light();
 
 		virtual void setupUniforms(Shader* inShader, int inCurrentLightIndex) = 0;
 	protected:

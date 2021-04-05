@@ -18,10 +18,7 @@ namespace RenderEngine {
 		~Scene3D();
 
 		void onUpdate(float inDeltaTime);
-
 		void addSceneObjectsToRenderer();
-		void addTransparentSceneObjectsToRenderer();	
-		void addOpaqueSceneObjectsToRenderer();	
 
 		inline SceneObjectRenderer* getSceneObjectRenderer() { return &mSceneObjectRenderer; }		
 		inline LightManager* getDynamicLightManager() { return mLightManager; }		

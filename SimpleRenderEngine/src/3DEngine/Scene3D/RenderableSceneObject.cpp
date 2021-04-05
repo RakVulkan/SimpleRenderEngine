@@ -22,9 +22,10 @@ namespace RenderEngine {
 		}	
 	}
 
-	void RenderableSceneObject::draw(Shader *shader, RenderPassType pass) const 
+	// Draw the SceneObject based on shader type and render pass type
+	void RenderableSceneObject::draw(Shader* inShader, RenderPassType inRenderPassType) const 
 	{
 		if(mModel)
-			mModel->Draw(shader, pass);
+			mModel->Draw(inShader, inRenderPassType);
 	}
 }

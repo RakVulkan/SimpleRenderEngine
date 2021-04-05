@@ -20,20 +20,16 @@ namespace RenderEngine {
 		inline bool getTransparent() const { return mIsTransparent; }
 		inline bool getStatic() const { return mIsStatic; }
 
-		inline void setPosition(glm::vec3& inOther) { mPosition = inOther; }
-		inline void setScale(glm::vec3& inOther) { mScale = inOther; }
-		inline void setOrientation(float inRadianRotation, glm::vec3 inRotationAxis) { mOrientation = glm::angleAxis(inRadianRotation, inRotationAxis); }
-		inline void setTransparent(bool inChoice) { mIsTransparent = inChoice; }		
-
 	private:
-		// Transformation data
+		// Transformation data for the scene object
 		glm::vec3 mPosition, mScale;
 		glm::quat mOrientation;
 	
-		Model *mModel;
+		Model* mModel;
 
 		// Should be true if the model contains any translucent material
 		bool mIsTransparent; 
+
 		// Should be true if the model will never have its transform modified
 		bool mIsStatic;	  
 	};

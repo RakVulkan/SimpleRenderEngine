@@ -4,6 +4,7 @@
 
 namespace RenderEngine {
 
+	// Takes list of skybox textures path and create the cubemap texture
 	Skybox::Skybox(const std::vector<std::string>& inFilePaths) 
 	{
 		mSkyboxShader = ShaderLoader::loadShader(std::string("src/Shaders/Skybox.glsl"));
@@ -12,6 +13,7 @@ namespace RenderEngine {
 		lSrgbCubeMapSettings.IsSRGB = true;
 		mSkyboxCubemap = TextureLoader::loadCubemapTexture(inFilePaths[0], inFilePaths[1], inFilePaths[2], inFilePaths[3], inFilePaths[4], inFilePaths[5], &lSrgbCubeMapSettings);
 
+		// Get the current OpenGL global state
 		mGLState = GLState::getInstance();
 	}
 
@@ -27,6 +29,7 @@ namespace RenderEngine {
 		}
 	}
 
+	// Render the skybox
 	void Skybox::Draw(ICamera* inCamera) 
 	{
 		mGLState->switchShader(mSkyboxShader);
@@ -46,6 +49,7 @@ namespace RenderEngine {
 		
 		mCubeObject.Draw();
 
+		// set back the opengl state
 		mGLState->setCullFace(GL_BACK);
 		mGLState->setDepthFunc(GL_LESS);
 
