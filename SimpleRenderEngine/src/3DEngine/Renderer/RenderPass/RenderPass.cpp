@@ -3,7 +3,9 @@
 
 namespace RenderEngine {
 
-	RenderPass::RenderPass(Scene3D* inScene) : mActiveScene(inScene) {
+	RenderPass::RenderPass(Scene3D* inScene) 
+		: mActiveScene(inScene) 
+	{
 		mGLState = GLState::getInstance();
 	}
 
