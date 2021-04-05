@@ -4,7 +4,9 @@
 #include <Utilities/Singleton.h>
 
 namespace RenderEngine {
-
+	
+	// This class holds the OpenGL pipeline state information. This class is derived from singleton as only once instance 
+	// of the OpenGL state should be there always
 	class GLState : Singleton {
 	public:
 		GLState();
@@ -12,54 +14,32 @@ namespace RenderEngine {
 
 		static GLState* getInstance();
 
-		void setDepthTest(bool choice);
-		void setStencilTest(bool choice);
-		void setBlend(bool choice);
-		void setFaceCull(bool choice);
-		void setMultisample(bool choice);
-		void setUsesClipPlane(bool choice);
+		void setDepthTest(bool inChoice);
+		void setBlend(bool inChoice);
+		void setFaceCull(bool inChoice);
 
-		void setDepthFunc(GLenum depthFunc);
-		void setStencilFunc(GLenum testFunc, int stencilFragValue, unsigned int stencilBitmask);
-		void setStencilOp(GLenum stencilFailOperation, GLenum depthFailOperation, GLenum depthPassOperation);
-		void setStencilWriteMask(unsigned int bitmask);
-		void setBlendFunc(GLenum src, GLenum dst);
-		void setCullFace(GLenum faceToCull);
-		void setClipPlane(glm::vec4 clipPlane);
+		void setDepthFunc(GLenum inDepthFunc);
+		void setBlendFunc(GLenum inSource, GLenum inDestination);
+		void setCullFace(GLenum inFaceToCull);
 
-		void switchShader(Shader *shader);
-		void switchShader(unsigned int shaderID);
+		void switchShader(Shader* inShader);
+		void switchShader(unsigned int inShaderID);
 
-		inline bool getUsesClipPlane() { return mUsesClipPlane; }
-		inline const glm::vec4& getActiveClipPlane() { return mActiveClipPlane; }
 	private:
+
 		// Toggles
 		bool mDepthTest;
-		bool mStencilTest;
 		bool mBlend;
 		bool mCull;
-		bool mMultisample;
-		bool mUsesClipPlane;
 
 		// Depth State
 		GLenum mDepthFunc;
-
-		// Stencil State
-		GLenum mStencilTestFunc;
-		int mStencilFragValue;
-		unsigned int mStencilFuncBitmask;
-
-		GLenum mStencilFailOperation, mDepthFailOperation, mDepthPassOperation;
-		unsigned int mStencilWriteBitmask;
 
 		// Blend State
 		GLenum mBlendSrc, mBlendDst;
 
 		// Culling State
 		GLenum mFaceToCull;
-
-		// Clip Plane State
-		glm::vec4 mActiveClipPlane;
 
 		// Active binds
 		unsigned int mActiveShaderID;

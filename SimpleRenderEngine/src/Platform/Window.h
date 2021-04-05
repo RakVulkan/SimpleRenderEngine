@@ -19,8 +19,8 @@ namespace RenderEngine {
 
 		static int getWidth() { return sWidth; }
 		static int getHeight() { return sHeight; }
-		static inline int getRenderResolutionWidth() { return (int)(sWidth * SUPERSAMPLING_FACTOR); }
-		static inline int getRenderResolutionHeight() { return (int)(sHeight * SUPERSAMPLING_FACTOR); }
+		static inline int getRenderResolutionWidth() { return (int)(sWidth); }
+		static inline int getRenderResolutionHeight() { return (int)(sHeight); }
 
 	private:
 		bool init();

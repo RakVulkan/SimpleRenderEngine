@@ -11,7 +11,4 @@
 #define NEAR_PLANE 0.3f
 #define FAR_PLANE 5000.0f
 
-#define SUPERSAMPLING_FACTOR 1 // 1 means window resolution will be the render resolution
 
-// Texture Filtering Settings
-#define ANISOTROPIC_FILTERING_LEVEL 8.0f

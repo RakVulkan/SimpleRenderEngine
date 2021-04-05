@@ -19,5 +19,4 @@ namespace RenderEngine {
 
 		return lResult;
 	}
-
 }
