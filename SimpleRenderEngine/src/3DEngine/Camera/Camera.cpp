@@ -4,7 +4,8 @@
 
 namespace RenderEngine {
 
-	Camera::Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = -90.0f, float pitch = 0.0f)
+	Camera::Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), 
+		float yaw = -90.0f, float pitch = 0.0f)
 		: mFront(glm::vec3(0.0f, 0.0f, -1.0f))
 		, mCurrentMovementSpeed(Camera_MAX_SPEED)
 		, mCurrentFOV(Camera_MAX_FOV)
@@ -17,25 +18,29 @@ namespace RenderEngine {
 		updateCameraVectors();		
 	}
 
-	Camera::Camera(float xPos, float yPos, float zPos, float xUp, float yUp, float zUp, float yaw = -90.0f, float pitch = 0.0f)
-		: mFront(glm::vec3(0.0f, 0.0f, -1.0f)), mCurrentMovementSpeed(Camera_MAX_SPEED), mCurrentFOV(Camera_MAX_FOV)
+	Camera::Camera(float inXPos, float inYPos, float inZPos, float inXUp, float inYUp, float inZUp, float inYaw = -90.0f, float inPitch = 0.0f)
+		: mFront(glm::vec3(0.0f, 0.0f, -1.0f))
+		, mCurrentMovementSpeed(Camera_MAX_SPEED)
+		, mCurrentFOV(Camera_MAX_FOV)
 	{
-		mPosition = glm::vec3(xPos, yPos, zPos);
-		mWorldUp = glm::vec3(xUp, yUp, zUp);
-		mCurrentYaw = yaw;
-		mCurrentPitch = pitch;
+		mPosition = glm::vec3(inXPos, inYPos, inZPos);
+		mWorldUp = glm::vec3(inXUp, inYUp, inZUp);
+		mCurrentYaw = inYaw;
+		mCurrentPitch = inPitch;
 		updateCameraVectors();
 	}
 
-	glm::mat4 Camera::getViewMatrix() {
+	glm::mat4 Camera::getViewMatrix() 
+	{
 		return glm::lookAt(mPosition, mPosition + mFront, mUp);
 	}
 
-	glm::mat4 Camera::getProjectionMatrix() {
+	glm::mat4 Camera::getProjectionMatrix() 
+	{
 		return glm::perspective(glm::radians(mCurrentFOV), (float)Window::getRenderResolutionWidth() / (float)Window::getRenderResolutionHeight(), NEAR_PLANE, FAR_PLANE);
 	}
 
-	void Camera::processInput(float deltaTime) 
+	void Camera::processInput(float inDeltaTime) 
 	{		 
 		// Movement speed
 		if (InputHandler::isKeyPressed(GLFW_KEY_LEFT_SHIFT))
@@ -46,21 +51,21 @@ namespace RenderEngine {
 			mCurrentMovementSpeed = Camera_MAX_SPEED;
 
 		// Camera movement
-		glm::vec3 direction = glm::vec3(0.0f);
+		glm::vec3 lDirection = glm::vec3(0.0f);
 		if (InputHandler::isKeyPressed(GLFW_KEY_W))
-			direction += mFront;
+			lDirection += mFront;
 		if (InputHandler::isKeyPressed(GLFW_KEY_S))
-			direction -= mFront;
+			lDirection -= mFront;
 		if (InputHandler::isKeyPressed(GLFW_KEY_A))
-			direction -= mRight;
+			lDirection -= mRight;
 		if (InputHandler::isKeyPressed(GLFW_KEY_D))
-			direction += mRight;
+			lDirection += mRight;
 		if (InputHandler::isKeyPressed(GLFW_KEY_SPACE))
-			direction += mWorldUp;
+			lDirection += mWorldUp;
 		if (InputHandler::isKeyPressed(GLFW_KEY_LEFT_CONTROL))
-			direction -= mWorldUp;
+			lDirection -= mWorldUp;
 
-		processCameraMovement(direction, deltaTime);
+		processCameraMovement(lDirection, inDeltaTime);
 
 
 		// Camera FOV
@@ -79,18 +84,19 @@ namespace RenderEngine {
 		updateCameraVectors();
 	}
 
-	void Camera::processCameraMovement(glm::vec3 &direction, float deltaTime) {
-		float velocity = mCurrentMovementSpeed * deltaTime;
-		mPosition += direction * velocity;
+	void Camera::processCameraMovement(glm::vec3& inDirection, float inDeltaTime) 
+	{
+		float velocity = mCurrentMovementSpeed * inDeltaTime;
+		mPosition += inDirection * velocity;
 	}
 
-	void Camera::processCameraRotation(double xOffset, double yOffset, GLboolean constrainPitch = true) {
-
-		mCurrentYaw += (float)xOffset;
-		mCurrentPitch += (float)yOffset;
+	void Camera::processCameraRotation(double inXOffset, double inYOffset, GLboolean inConstrainPitch = true) 
+	{
+		mCurrentYaw += static_cast<float>(inXOffset);
+		mCurrentPitch += static_cast<float>(inYOffset);
 
 		// Constrain the pitch
-		if (constrainPitch) {
+		if (inConstrainPitch) {
 			if (mCurrentPitch > 89.0f) {
 				mCurrentPitch = 89.0f;
 			}
@@ -102,9 +108,10 @@ namespace RenderEngine {
 		updateCameraVectors();
 	}
 
-	void Camera::processCameraFOV(double offset) {
-		if (offset != 0.0 && mCurrentFOV >= 1.0 && mCurrentFOV <= Camera_MAX_FOV) {
-			mCurrentFOV -= static_cast<float>(offset);
+	void Camera::processCameraFOV(double inOffset) 
+	{
+		if (inOffset != 0.0 && mCurrentFOV >= 1.0 && mCurrentFOV <= Camera_MAX_FOV) {
+			mCurrentFOV -= static_cast<float>(inOffset);
 		}
 		if (mCurrentFOV < 1.0f) {
 			mCurrentFOV = 1.0f;
@@ -114,7 +121,8 @@ namespace RenderEngine {
 		}
 	}
 
-	void Camera::updateCameraVectors() {
+	void Camera::updateCameraVectors() 
+	{
 		mFront.x = cos(glm::radians(mCurrentYaw)) * cos(glm::radians(mCurrentPitch));
 		mFront.y = sin(glm::radians(mCurrentPitch));
 		mFront.z = sin(glm::radians(mCurrentYaw)) * cos(glm::radians(mCurrentPitch));
@@ -123,5 +131,4 @@ namespace RenderEngine {
 		mRight = glm::normalize(glm::cross(mFront, mWorldUp));
 		mUp = glm::normalize(glm::cross(mRight, mFront));
 	}
-
 }
