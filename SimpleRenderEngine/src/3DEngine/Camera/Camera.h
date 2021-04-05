@@ -33,18 +33,16 @@ namespace RenderEngine {
 		virtual void invertPitch() override;
 
 		// Getters
-		inline float getYaw() const { return mCurrentYaw; }
-		inline float getPitch() const { return mCurrentPitch; }
-		inline float getMovementSpeed() const { return mCurrentMovementSpeed; }
-		inline float getFOV() const { return mCurrentFOV; }
 		inline virtual const glm::vec3& getPosition() const override { return mPosition; }
 		inline virtual const glm::vec3& getFront() const override { return mFront; }
 		inline virtual const glm::vec3& getUp() const override { return mUp; }
+
 	private:
 		void updateCameraVectors();
 		void processCameraMovement(glm::vec3& inDirection, float inDeltaTime);
 		void processCameraRotation(double inXOffset, double inYOffset, GLboolean inConstrainPitch);
 		void processCameraFOV(double inYOffset);
+
 	private:
 		// Camera Attributes
 		glm::vec3 mPosition;

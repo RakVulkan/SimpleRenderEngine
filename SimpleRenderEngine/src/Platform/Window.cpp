@@ -89,25 +89,30 @@ namespace RenderEngine {
 
 	static void key_callback(GLFWwindow *inOutWindow, int inKey, int inScancode, int inAction, int inMods) 
 	{		
-		gInputHandler.keyCallback(inKey, inScancode, inAction, inMods);
+		gInputHandler.keyCallback(inKey, inScancode, inAction);
 	}
 
-	static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
-		gInputHandler.mouseButtonCallback(button, action, mods);		
+	static void mouse_button_callback(GLFWwindow* inWindow, int inButton, int inAction, int inMods) 
+	{
+		gInputHandler.mouseButtonCallback(inButton, inAction);
 	}
 
-	static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos) {
-		gInputHandler.cursorPositionCallback(xpos, ypos);
+	static void cursor_position_callback(GLFWwindow* inWindow, double inXpos, double inYpos) 
+	{
+		gInputHandler.cursorPositionCallback(inXpos, inYpos);
 	}
 	
-	static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
-		gInputHandler.scrollCallback(xoffset, yoffset);
+	static void scroll_callback(GLFWwindow* inWindow, double inXoffset, double inYoffset) 
+	{
+		gInputHandler.scrollCallback(inXoffset, inYoffset);
 	}
 
-	static void GLAPIENTRY DebugMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam) {
+	static void GLAPIENTRY DebugMessageCallback(GLenum inSource, GLenum inType, GLuint inId, GLenum inSeverity, 
+		GLsizei inLength, const GLchar* inMessage, const void* inUserParam) 
+	{
 		fprintf(stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
-			(type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""),
-			type, severity, message);
+			(inType == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""),
+			inType, inSeverity, inMessage);
 	}
 
 	bool Window::init()

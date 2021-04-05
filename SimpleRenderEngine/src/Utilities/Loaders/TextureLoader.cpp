@@ -13,9 +13,11 @@ namespace RenderEngine {
 	Texture* TextureLoader::sDefaultMetallic;
 	Texture* TextureLoader::sDefaultAo;
 
+	// Loads the texture from input path using SOIL library and generate the 2D texture. 
+	// It also finds if the texture already present in texture cache so that it can be accessed faster without loading and return
 	Texture* TextureLoader::load2DTexture(std::string&& inPath, TextureSettings* inSettings) 
 	{
-		// Check the cache
+		// Check the cache for faster access
 		auto iter = mTextureCache.find(inPath);
 		if (iter != mTextureCache.end()) {
 			return iter->second;
@@ -55,6 +57,7 @@ namespace RenderEngine {
 		return mTextureCache[inPath];
 	}
 
+	// Generate the cubemap texture based on the 6 faces of the cubemap
 	Cubemap* TextureLoader::loadCubemapTexture(const std::string& inRight, const std::string& inLeft, const std::string& inTop,
 		const std::string& inBottom, const std::string& inBack, const std::string& inFront, CubemapSettings* inSettings) 
 	{
@@ -90,6 +93,7 @@ namespace RenderEngine {
 		return lCubemap;
 	}
 
+	// Initializes the default textures so that these textures can be used whenever any of the model textures are not loaded
 	void TextureLoader::initializeDefaultTextures() 
 	{
 		// Setup texture and minimal filtering because they are 1x1 textures so they require none

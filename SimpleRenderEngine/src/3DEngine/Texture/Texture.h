@@ -46,8 +46,6 @@ namespace RenderEngine {
 		void unbind();
 
 		// Texture Tuning Functions (Works for pre-generation and post-generation)
-		void setTextureWrapS(GLenum inTextureWrapMode);
-		void setTextureWrapT(GLenum inTextureWrapMode);
 		void setTextureMinFilter(GLenum inTextureFilterMode);
 		void setTextureMagFilter(GLenum inTextureFilterMode);
 	

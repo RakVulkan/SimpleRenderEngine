@@ -101,28 +101,6 @@ namespace RenderEngine {
 		glBindTexture(mTextureTarget, 0);
 	}
 
-	void Texture::setTextureWrapS(GLenum inTextureWrapMode) 
-	{
-		if (mTextureSettings.TextureWrapSMode == inTextureWrapMode)
-			return;
-
-		mTextureSettings.TextureWrapSMode = inTextureWrapMode;
-		if (isGenerated()) {
-			glTexParameteri(mTextureTarget, GL_TEXTURE_WRAP_S, mTextureSettings.TextureWrapSMode);
-		}
-	}
-
-	void Texture::setTextureWrapT(GLenum inTextureWrapMode)
-	{
-		if (mTextureSettings.TextureWrapTMode == inTextureWrapMode)
-			return;
-
-		mTextureSettings.TextureWrapTMode = inTextureWrapMode;
-		if (isGenerated()) {
-			glTexParameteri(mTextureTarget, GL_TEXTURE_WRAP_T, mTextureSettings.TextureWrapTMode);
-		}
-	}
-
 	void Texture::setTextureMinFilter(GLenum inTextureFilterMode) 
 	{
 		if (mTextureSettings.TextureMinificationFilterMode == inTextureFilterMode)

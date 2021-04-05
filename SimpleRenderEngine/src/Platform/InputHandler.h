@@ -18,8 +18,8 @@ namespace RenderEngine {
 		static float getKeyPressed(unsigned int inKeycode);
 		static bool isMouseButtonPressed(unsigned int inCode);
 
-		void keyCallback(int inKey, int inScancode, int inAction, int inMods);
-		void mouseButtonCallback(int inButton, int inAction, int inMods);
+		void keyCallback(int inKey, int inScancode, int inAction);
+		void mouseButtonCallback(int inButton, int inAction);
 		void cursorPositionCallback(double inXpos, double inYpos);
 		void scrollCallback(double inXoffset, double inYoffset);	
 

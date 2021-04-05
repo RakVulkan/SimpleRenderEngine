@@ -24,7 +24,9 @@ namespace RenderEngine {
 		memset(sButtons, 0, sizeof(bool) * MAX_BUTTONS);
 	}
 
-	InputHandler::~InputHandler() {}
+	InputHandler::~InputHandler() 
+	{
+	}
 
 	void InputHandler::update() 
 	{
@@ -63,25 +65,29 @@ namespace RenderEngine {
 		return sButtons[inCode];
 	}
 
-	void InputHandler::keyCallback(int inKey, int inScancode, int inAction, int inMods) {
+	void InputHandler::keyCallback(int inKey, int inScancode, int inAction) 
+	{
 		sKeys[inKey] = inAction != GLFW_RELEASE;
 		sKeyPressed[inKey] = sKeys[inKey];
 	}
 
-	void InputHandler::mouseButtonCallback(int button, int action, int mods) {
-		sButtons[button] = action != GLFW_RELEASE;
+	void InputHandler::mouseButtonCallback(int inButton, int inAction) 
+	{
+		sButtons[inButton] = inAction != GLFW_RELEASE;
 	}
 
-	void InputHandler::cursorPositionCallback(double xpos, double ypos) {
-		sMouseXDelta = xpos - sMouseX;
-		sMouseYDelta = ypos - sMouseY;
-		sMouseX = xpos;
-		sMouseY = ypos;
+	void InputHandler::cursorPositionCallback(double inXpos, double inYpos) 
+	{
+		sMouseXDelta = inXpos - sMouseX;
+		sMouseYDelta = inYpos - sMouseY;
+		sMouseX = inXpos;
+		sMouseY = inYpos;
 	}
 
-	void InputHandler::scrollCallback(double xoffset, double yoffset) {
-		sScrollXDelta = xoffset;
-		sScrollYDelta = yoffset;
+	void InputHandler::scrollCallback(double inXoffset, double inYoffset) 
+	{
+		sScrollXDelta = inXoffset;
+		sScrollYDelta = inYoffset;
 	}
 }
 
