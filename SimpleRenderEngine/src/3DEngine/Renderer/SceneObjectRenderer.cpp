@@ -15,6 +15,15 @@ namespace RenderEngine {
 
 	SceneObjectRenderer::~SceneObjectRenderer()
 	{ 	
+		for (auto lOpaqueObject : mOpaqueObjectsRenderQueue) {
+			delete lOpaqueObject;
+			lOpaqueObject = nullptr;
+		}
+
+		for (auto lTransparentObject : mTransparentObjectsRenderQueue) {
+			delete lTransparentObject;
+			lTransparentObject = nullptr;
+		}
 	}
 
 	void SceneObjectRenderer::addOpaqueObject(RenderableSceneObject* inOpaqueObject) 
