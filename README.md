@@ -5,6 +5,14 @@ SimpleRenderEngine is Graphics Rendering Engine built with OpenGL and C++. The m
  The rendering engine is implmented in such a way that it can handle rendering of opaque, transparent, static and dynamic objects with an appropriate order to achieve better FPS. 
  The texture and shader modules are implemented based on cache mechanism to achieve faster fetch. 
  
+ ## Build
+ Open SimpleRenderEngine.sln and build in any one of the mode and run it. 
+ Currently it supports only in windows and planning to add support for other platforms
+ 
+ ### ToDo
+   1. Cmake support 
+   2. Support for multiple platforms
+ 
 ## Below are the list of features implemented currently:
  1. Forward rendering
  2. PBR
