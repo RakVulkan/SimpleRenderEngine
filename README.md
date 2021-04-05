@@ -9,9 +9,16 @@ SimpleRenderEngine is Graphics Rendering Engine built with OpenGL and C++. The m
  Open SimpleRenderEngine.sln and build in any one of the mode and run it. 
  Currently it supports only in windows and planning to add support for other platforms
  
- ### ToDo
+ #### ToDo
    1. Cmake support 
    2. Support for multiple platforms
+   
+ #### Dependencies 
+   1. GLFW  (For window)
+   2. GLEW (OpenGL 4.3)
+   3. GLM
+   4. Assimp (For model loading) 
+   5. SOIL (For texture loading)
  
 ## Below are the list of features implemented currently:
  1. Forward rendering
