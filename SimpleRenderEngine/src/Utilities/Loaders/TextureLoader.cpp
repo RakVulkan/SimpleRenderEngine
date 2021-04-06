@@ -6,7 +6,7 @@ constexpr int CUBE_MAP_FACE_COUNT = 6;
 namespace RenderEngine {
 
 	// Static declarations
-	std::unordered_map<std::string, Texture*> TextureLoader::mTextureCache;
+	std::unordered_map<std::string, Texture*> TextureLoader::sTextureCache;
 	Texture* TextureLoader::sDefaultAlbedo;
 	Texture* TextureLoader::sDefaultNormal;
 	Texture* TextureLoader::sDefaultRoughness; 
@@ -18,8 +18,8 @@ namespace RenderEngine {
 	Texture* TextureLoader::load2DTexture(std::string&& inPath, TextureSettings* inSettings) 
 	{
 		// Check the cache for faster access
-		auto iter = mTextureCache.find(inPath);
-		if (iter != mTextureCache.end()) {
+		auto iter = sTextureCache.find(inPath);
+		if (iter != sTextureCache.end()) {
 			return iter->second;
 		}
 
@@ -50,11 +50,11 @@ namespace RenderEngine {
 
 		lTexture->generate2DTexture(lWidth, lHeight, dataFormat, GL_UNSIGNED_BYTE, image);
 
-		mTextureCache.insert(std::pair<std::string, Texture*>(inPath, lTexture));
+		sTextureCache.insert(std::pair<std::string, Texture*>(inPath, lTexture));
 		
 		stbi_image_free(image);
 
-		return mTextureCache[inPath];
+		return sTextureCache[inPath];
 	}
 
 	// Generate the cubemap texture based on the 6 faces of the cubemap

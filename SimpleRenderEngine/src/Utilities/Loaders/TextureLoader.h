@@ -21,7 +21,7 @@ namespace RenderEngine {
 		inline static Texture* getDefaultAO() { return sDefaultAo; }
 
 	private:
-		static std::unordered_map<std::string, Texture*> mTextureCache;
+		static std::unordered_map<std::string, Texture*> sTextureCache;
 		
 		// Default Textures
 		static Texture* sDefaultAlbedo;

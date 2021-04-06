@@ -5,8 +5,8 @@
 
 namespace RenderEngine {
 
-	PbrRenderPass::PbrRenderPass(Scene3D *scene, bool inIsMultisampled)
-		: RenderPass(scene)
+	PbrRenderPass::PbrRenderPass(Scene3D* inScene, bool inIsMultisampled)
+		: RenderPass(inScene)
 		, mAllocatedFramebuffer(true)
 	{
 		mModelShader = ShaderLoader::loadShader(std::string("src/Shaders/PBR_Model.glsl"));	
